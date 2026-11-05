@@ -1,0 +1,337 @@
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ============================================================================
+   EcoTrack design tokens
+   Nature-inspired palette: forest/emerald greens, deep navy, soft cream,
+   muted water blue. Every colour used by the app is defined here once, so both
+   themes stay consistent and nothing has to be hard-coded in a component.
+   ============================================================================ */
+
+:root {
+  /* Brand — forest & emerald greens */
+  --color-primary: #059669;
+  --color-primary-dark: #047857;
+  --color-primary-light: #10b981;
+  --color-primary-soft: #ecfdf5;
+  --color-primary-tint: #d1fae5;
+
+  /* Deep navy — used for dark surfaces that stay navy in both themes */
+  --color-secondary: #0f172a;
+  --color-secondary-soft: #1e293b;
+  --color-navy: #0f172a;
+  --color-navy-soft: #1e293b;
+
+  /* Water blue accent */
+  --color-accent: #0284c7;
+  --color-accent-light: #38bdf8;
+  --color-accent-soft: #e0f2fe;
+  --color-water: #0284c7;
+  --color-water-soft: #e0f2fe;
+
+  /* Warm earthy supporting tones */
+  --color-earth: #b45309;
+  --color-earth-soft: #fef3c7;
+
+  /* Surfaces — clean, cool neutrals in light mode */
+  --color-bg: #f7f9fc;
+  --color-bg-alt: #eef2f8;
+  --color-surface: #ffffff;
+  --color-surface-rgb: 255, 255, 255;
+  --color-surface-elevated: #ffffff;
+  --color-input-bg: #ffffff;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  /* Text */
+  --color-text: #172033;
+  --color-text-muted: #64748b;
+  --color-text-soft: #475569;
+
+  /* Feedback */
+  --color-success: #059669;
+  --color-danger: #dc2626;
+  --color-warning: #b45309;
+
+  /* Focus ring — professional, clearly visible highlight */
+  --ring: 0 0 0 3px rgba(5, 150, 105, 0.16);
+  --ring-danger: 0 0 0 3px rgba(220, 38, 38, 0.16);
+
+  /* Gradients — used sparingly */
+  --gradient-brand: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  --gradient-water: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+  --gradient-navy: linear-gradient(150deg, #0f172a 0%, #14342c 100%);
+
+  /* Shadow / radius */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.07), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 6px 18px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --transition: all 0.15s ease;
+  --transition-slow: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* One family across the whole product. Inter is loaded in index.html and every other
+     rule inherits from here, so a typography change only ever has to happen once. */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  --nav-height: 68px;
+  --content-max: 1240px;
+}
+
+:root[data-theme='dark'] {
+  --color-primary: #10b981;
+  --color-primary-dark: #34d399;
+  --color-primary-light: #34d399;
+  --color-primary-soft: #0a2e24;
+  --color-primary-tint: #114237;
+
+  --color-secondary: #e2e8f0;
+  --color-secondary-soft: #1e293b;
+
+  --color-accent: #38bdf8;
+  --color-accent-light: #7dd3fc;
+  --color-accent-soft: #0b2a3f;
+  --color-water: #38bdf8;
+  --color-water-soft: #0b2a3f;
+
+  --color-earth: #fbbf24;
+  --color-earth-soft: #3a2c0c;
+
+  --color-bg: #0b1220;
+  --color-bg-alt: #101b2d;
+  --color-surface: #111d30;
+  --color-surface-rgb: 17, 29, 48;
+  --color-surface-elevated: #16243a;
+  --color-input-bg: #0c1728;
+  --color-border: #25344a;
+  --color-border-strong: #35486a;
+
+  --color-text: #e5eaf2;
+  --color-text-muted: #94a3b8;
+  --color-text-soft: #c3cede;
+
+  --color-success: #34d399;
+  --color-danger: #f87171;
+  --color-warning: #fbbf24;
+
+  --ring: 0 0 0 3px rgba(16, 185, 129, 0.28);
+  --ring-danger: 0 0 0 3px rgba(248, 113, 113, 0.25);
+
+  --gradient-brand: linear-gradient(135deg, #059669 0%, #34d399 100%);
+  --gradient-water: linear-gradient(135deg, #0369a1 0%, #38bdf8 100%);
+  --gradient-navy: linear-gradient(150deg, #0f172a 0%, #0b2a24 100%);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ============================================================================
+   Form controls — the single rule set that fixes unreadable input text.
+   Deliberately wrapped in :where() so the whole block contributes ZERO
+   specificity. A bare `input:not(...)` chain scores (0,5,1) and would beat the
+   component rules that reserve room for an input's icon; because select and
+   textarea carry no such chain, that mismatch is what previously let icons
+   overlap the text of inputs but not of selects. With specificity zeroed, any
+   class rule (`.eco-input`, `.eco-input-wrap.has-prefix .eco-input`, …) wins,
+   while a class-less control still inherits these theme-safe defaults.
+   ============================================================================ */
+
+:where(
+  input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']):not([type='color']),
+  select,
+  textarea
+) {
+  color: var(--color-text);
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  /* Many browsers fade placeholders to near-invisible; force a readable tone. */
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+/* The dropdown list itself is rendered by the OS — it needs an explicit colour
+   pair or it inherits the page background and becomes unreadable. */
+select option {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+:where(
+  input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']):focus,
+  select:focus,
+  textarea:focus
+) {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--ring);
+}
+
+:where(
+  input:not([type='checkbox']):not([type='radio']):disabled,
+  select:disabled,
+  textarea:disabled
+) {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Chrome/Edge autofill paints its own background and black text over the theme. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-input-bg) inset;
+  caret-color: var(--color-text);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Number inputs: keep the native spinner dark-safe. */
+:root[data-theme='dark'] input[type='number'] {
+  color-scheme: dark;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* Page transition fade, re-triggered on each route change via the key on its wrapper */
+@keyframes ecotrack-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-fade {
+  animation: ecotrack-fade-in 0.24s ease;
+}
+
+/* Small CSS-only spinner used by LoadingButton — no new dependency */
+@keyframes ecotrack-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-spinner-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  opacity: 0.9;
+  animation: ecotrack-spin 0.6s linear infinite;
+}
+
+button.is-loading {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.theme-toggle-sidebar {
+  margin-left: 8px;
+}
+
+.msg {
+  border-radius: var(--radius-sm);
+  padding: 11px 15px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.msg-success {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary-light);
+}
+
+.msg-error {
+  background: rgba(220, 38, 38, 0.08);
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+:root[data-theme='dark'] .msg-error {
+  color: #fca5a5;
+  background: rgba(220, 38, 38, 0.16);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.field-error-text {
+  color: var(--color-danger);
+  font-size: 0.8rem;
+  margin: 5px 0 0;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fade,
+  .btn-spinner {
+    animation: none;
+  }
+}

@@ -1,0 +1,31 @@
+spring.application.name=backend
+server.port=8080
+server.error.include-message=always
+
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+
+# Gmail ID used for OTP sending
+spring.mail.username=YOUR_GMAIL_ID
+
+# Gmail App Password (Google Authentication App Password)
+spring.mail.password=YOUR_APP_PASSWORD
+
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# When true (recommended for local/offline dev without real SMTP configured above), OTPs are
+# also returned in the API response so you can verify/login without receiving real email.
+otp.demo-fallback-enabled=true
+
+# When true, wipes the users/history collections on every startup. Leave false outside local dev.
+database.reset-on-startup=false
+
+# MongoDB connection string. Use a local MongoDB instance (mongodb://localhost:27017/ecotrack)
+# or MongoDB Atlas (replace USER_NAME/USER_PASSWORD/cluster host with your own).
+spring.data.mongodb.uri=mongodb://localhost:27017/ecotrack
+
+spring.data.mongodb.auto-index-creation=false
+
+# Local disk directory for storing uploaded bill documents (relative to backend working dir)
+app.uploads.dir=uploads/bills

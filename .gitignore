@@ -1,0 +1,27 @@
+node_modules/ 
+.env 
+dist/ 
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+
+# Logs and local run dumps
+*.log
+startup_log*.txt
+
+# Generated build output and caches
+build/
+target/
+**/.gradle/
+
+# Local environment / secret files
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Claude local tool state (launch.json stays on disk, just not in Git)
+.claude/launch.json
+.claude/*.lock
+
